@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Portofolio Clean | ARIL</title>
+  <title>Portofolio | ARIL</title>
   <!-- Tailwind CSS v3 + Font Awesome Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom konfigurasi tailwind untuk theme clean + ekstra smooth scroll -->
@@ -44,6 +44,22 @@
     .btn-submit:active {
       transform: scale(0.97);
     }
+    .portfolio-content{
+    display:block;
+}
+
+.hidden{
+    display:none;
+}
+
+.portfolio-tab{
+    transition:.3s;
+}
+
+.portfolio-tab.active{
+    background:#2563eb;
+    color:white;
+}
   </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
@@ -53,7 +69,7 @@
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-4 flex flex-wrap items-center justify-between">
       <!-- Logo / nama clean -->
       <div class="text-xl font-bold tracking-tight bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-        ARIL<span class="text-blue-600">.dev</span>
+        ARIL<span class="text-blue-600">.finance</span>
       </div>
       
       <!-- Navigation links (desktop & mobile friendly) -->
@@ -89,7 +105,7 @@
         <!-- Left side: intro text -->
         <div class="flex-1 text-center md:text-left">
           <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-4">
-            <i class="fas fa-code mr-1"></i> Web Developer
+            <i class="fas fa-code mr-1"></i> finance
           </div>
           <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
             Halo, Saya <span class="text-blue-600">ARIL</span>
@@ -99,13 +115,30 @@
             Dengan fokus pada pengalaman pengguna yang mulus.
           </p>
           <div class="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
-            <a href="#projects" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-200">
-              Lihat Proyek <i class="fas fa-arrow-right text-sm"></i>
-            </a>
-            <a href="#contact" class="inline-flex items-center gap-2 bg-white border border-gray-300 hover:border-blue-400 text-gray-700 font-semibold px-6 py-3 rounded-full shadow-sm transition duration-200">
-              Hubungi Saya <i class="fas fa-envelope"></i>
-            </a>
-          </div>
+
+  <!-- Lihat Proyek -->
+  <a href="#projects"
+     class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-200">
+    Lihat Proyek
+    <i class="fas fa-arrow-right text-sm"></i>
+  </a>
+
+  <!-- Download CV -->
+  <a href="cv ats pdf.docx"
+     download="CV ARIL"
+     class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full shadow-md transition duration-200">
+    <i class="fas fa-download"></i>
+    Download CV
+  </a>
+
+  <!-- Hubungi Saya -->
+  <a href="#contact"
+     class="inline-flex items-center gap-2 bg-white border border-gray-300 hover:border-blue-400 text-gray-700 font-semibold px-6 py-3 rounded-full shadow-sm transition duration-200">
+    Hubungi Saya
+    <i class="fas fa-envelope"></i>
+  </a>
+
+</div>
           <!-- social quick links -->
           <div class="flex gap-5 mt-10 justify-center md:justify-start text-gray-500">
             <a href="#" class="hover:text-blue-600 transition text-xl"><i class="fab fa-discord"></i></a>
@@ -142,48 +175,19 @@
       <div class="flex flex-col lg:flex-row gap-12 items-center">
         <div class="flex-1 space-y-5 text-gray-700 leading-relaxed">
           <p class="text-lg">
-            Saya seorang <strong class="text-blue-600">frontend developer & desainer UI</strong> dengan hasrat menciptakan antarmuka yang minimalis 
-            namun kuat. Saya percaya bahwa desain yang baik adalah ketika pengguna tidak perlu berpikir — semuanya 
-            terasa intuitif dan menyenangkan.
+            Saya lulusan <strong class="text-blue-600">SMKN 1 LOSARANG INDRAMAYU</strong> jurusan teknik komputer jaringan komputer (TJKT) yang memiliki dasar pengetahuan di bidang jaringan komputer, instalasi perangkat keras dan lunak, serta troubleshooting sistem komputer. Saya memiliki rasa ingin tahu yang tinggi terhadap perkembangan teknologi dan senang mempelajari hal-hal baru untuk meningkatkan kemampuan.
+
+Selain bidang teknologi, saya juga memiliki ketertarikan pada dunia finance, khususnya dalam memahami laporan keuangan, analisis perusahaan, investasi, dan pasar keuangan. Kombinasi minat di bidang teknologi dan finance mendorong saya untuk terus mengembangkan keterampilan agar dapat memberikan solusi yang efektif serta beradaptasi dengan kebutuhan industri yang terus berkembang.
           </p>
           <p class="text-gray-600">
-            Berpengalaman dalam membangun website modern menggunakan Tailwind CSS, React, dan berbagai teknologi web. 
-            Saya suka mengubah ide menjadi kode yang bersih dan terstruktur. Selain coding, saya juga aktif berbagi 
-            insight tentang desain dan pengembangan web.
+            
           </p>
-          <div class="grid grid-cols-2 gap-4 pt-3">
-            <div class="flex items-center gap-2">
-              <i class="fas fa-check-circle text-blue-500"></i>
-              <span>Responsive Design</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-check-circle text-blue-500"></i>
-              <span>Tailwind CSS Expert</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-check-circle text-blue-500"></i>
-              <span>UI/UX Sensibility</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-check-circle text-blue-500"></i>
-              <span>JavaScript / React</span>
-            </div>
+          
           </div>
           <!-- Tombol download CV placeholder -->
-          <div class="pt-3">
-  <a href="tugas mtk.docx" download="CV_aril_.docx" class="inline-flex items-center gap-2 text-blue-600 border border-blue-300 hover:bg-blue-50 px-5 py-2 rounded-full transition text-sm font-medium">
-    <i class="fas fa-download"></i> Download CV
-  </a>
-</div>
-        </div>
-        <div class="flex-1 bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-          <h3 class="text-xl font-semibold flex items-center gap-2"><i class="fas fa-quote-left text-blue-400"></i> Filosofi Karya</h3>
-          <p class="mt-3 italic text-gray-600">"Kesederhanaan adalah keindahan tertinggi. Setiap baris kode dan setiap piksel harus memberikan nilai lebih bagi penggunanya."</p>
-          <div class="mt-6 flex items-center gap-4 border-t pt-5 border-gray-100">
-            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xl font-bold">R</div>
-            <div>
-              <p class="font-medium text-gray-800">ARIL</p>
-              <p class="text-sm text-gray-500">Frontend Developer & Creative Thinker</p>
+          
+        
+              
             </div>
           </div>
         </div>
@@ -198,81 +202,208 @@
           <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-14 h-1 bg-blue-500 rounded-full"></div>
         </h2>
         <p class="text-gray-500 mt-5 max-w-xl mx-auto">Beberapa karya terbaru yang menampilkan estetika clean & fungsionalitas tinggi.</p>
+        <!-- Portfolio Tabs -->
+<div class="flex justify-center gap-4 mt-8 mb-10 flex-wrap">
+
+<button
+class="portfolio-tab active px-5 py-2 rounded-full bg-blue-600 text-white"
+data-target="projectsTab">
+📁 Proyek
+</button>
+
+<button
+class="portfolio-tab px-5 py-2 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition"
+data-target="certificateTab">
+🏆 Sertifikat
+</button>
+
+<button
+class="portfolio-tab px-5 py-2 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white transition"
+data-target="activityTab">
+📷 Foto Kegiatan
+</button>
+
+</div>
+        
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project Card 1 -->
-        <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition duration-300">
-          <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-meteor"></i>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start">
-              <h3 class="text-xl font-bold text-gray-800">WeatherFlow</h3>
-              <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Web App</span>
-            </div>
-            <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-              Aplikasi cuaca minimalis dengan visual dinamis & data real-time menggunakan API. Desain interaktif dan clean.
-            </p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">React</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Tailwind</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Axios</span>
-            </div>
-            <div class="mt-5 flex gap-4">
-              <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center gap-1 hover:underline">Live demo <i class="fas fa-external-link-alt text-xs"></i></a>
-              <a href="#" class="text-gray-500 text-sm font-medium inline-flex items-center gap-1 hover:text-gray-700">Source <i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Project Card 2 -->
-        <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100">
-          <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-store"></i>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start">
-              <h3 class="text-xl font-bold text-gray-800">EcoMarket</h3>
-              <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">E-commerce</span>
-            </div>
-            <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-              Platform marketplace produk ramah lingkungan dengan filter cerdas & sistem keranjang yang seamless.
-            </p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Vue.js</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Tailwind</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Firebase</span>
-            </div>
-            <div class="mt-5 flex gap-4">
-              <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center gap-1">Demo <i class="fas fa-external-link-alt text-xs"></i></a>
-              <a href="#" class="text-gray-500 text-sm font-medium inline-flex items-center gap-1">Repo <i class="fab fa-github"></i></a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Project Card 3 -->
-        <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100">
-          <div class="h-48 bg-gradient-to-br from-rose-400 to-orange-400 flex items-center justify-center text-white text-4xl">
-            <i class="fas fa-palette"></i>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start">
-              <h3 class="text-xl font-bold text-gray-800">Portfolio Studio</h3>
-              <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">UI kit</span>
-            </div>
-            <p class="text-gray-500 mt-2 text-sm leading-relaxed">
-              Template portofolio modern untuk kreator. Clean layout dengan animasi halus & sistem grid fleksibel.
-            </p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">HTML/CSS</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">Tailwind</span>
-              <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded">GSAP</span>
-            </div>
-            <div class="mt-5 flex gap-4">
-              <a href="#" class="text-blue-600 text-sm font-medium inline-flex items-center gap-1">Preview</a>
-              <a href="#" class="text-gray-500 text-sm font-medium inline-flex items-center gap-1">GitHub</a>
-            </div>
+      
+        <!-- =================== PROYEK =================== -->
+<div id="projectsTab" class="portfolio-content">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+
+<div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+<img src="long.webp"
+class="w-full h-52 object-cover">
+
+<div class="p-5">
+<h3 class="text-xl font-bold">
+Website Portfolio
+</h3>
+
+<p class="text-gray-500 mt-2">
+Deskripsi singkat proyek pertama.
+</p>
+
+<a href="#"
+class="text-blue-600 font-medium mt-3 inline-block">
+Lihat Detail →
+</a>
+
+</div>
+</div>
+
+<div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+<img src="https://picsum.photos/600/400?random=2"
+class="w-full h-52 object-cover">
+
+<div class="p-5">
+<h3 class="text-xl font-bold">
+Website Sekolah
+</h3>
+
+<p class="text-gray-500 mt-2">
+Deskripsi proyek kedua.
+</p>
+
+<a href="#"
+class="text-blue-600 font-medium mt-3 inline-block">
+Lihat Detail →
+</a>
+
+</div>
+</div>
+
+<div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+<img src="https://picsum.photos/600/400?random=3"
+class="w-full h-52 object-cover">
+
+<div class="p-5">
+<h3 class="text-xl font-bold">
+Landing Page
+</h3>
+
+<p class="text-gray-500 mt-2">
+Deskripsi proyek ketiga.
+</p>
+
+<a href="#"
+class="text-blue-600 font-medium mt-3 inline-block">
+Lihat Detail →
+</a>
+
+</div>
+</div>
+
+</div>
+
+</div>
+<!-- =================== SERTIFIKAT =================== -->
+
+<div id="certificateTab"
+class="portfolio-content hidden">
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+<img src="long.webp"
+class="w-full h-52 object-cover">
+
+<div class="p-5">
+
+<h3 class="font-bold">
+Sertifikat Frontend
+</h3>
+
+<p class="text-gray-500">
+Dicapai tahun 2025
+</p>
+
+</div>
+
+</div>
+
+<div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+
+<img src="https://picsum.photos/600/400?random=11"
+class="w-full h-52 object-cover">
+
+<div class="p-5">
+
+<h3 class="font-bold">
+Sertifikat JavaScript
+</h3>
+
+<p class="text-gray-500">
+Dicapai tahun 2026
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- =================== FOTO KEGIATAN =================== -->
+
+<div id="activityTab" class="portfolio-content hidden">
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Foto 1 -->
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+      <img src="kegiatan1.jpg"
+      class="w-full h-52 object-cover"
+      alt="Foto Kegiatan 1">
+
+      <div class="p-5">
+        <h3 class="font-bold text-lg">
+          Seminar Teknologi
+        </h3>
+
+        <p class="text-gray-500 mt-2 text-sm">
+          Mengikuti seminar mengenai perkembangan teknologi dan pengembangan web modern.
+        </p>
+      </div>
+    </div>
+
+    <!-- Foto 2 -->
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+      <img src="kegiatan2.jpg"
+      class="w-full h-52 object-cover"
+      alt="Foto Kegiatan 2">
+
+      <div class="p-5">
+        <h3 class="font-bold text-lg">
+          Workshop Coding
+        </h3>
+
+        <p class="text-gray-500 mt-2 text-sm">
+          Berpartisipasi dalam workshop pembuatan aplikasi berbasis web.
+        </p>
+      </div>
+    </div>
+
+    <!-- Foto 3 -->
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-sm border">
+      <img src="kegiatan3.jpg"
+      class="w-full h-52 object-cover"
+      alt="Foto Kegiatan 3">
+
+      <div class="p-5">
+        <h3 class="font-bold text-lg">
+          Kegiatan Organisasi
+        </h3>
+
+        <p class="text-gray-500 mt-2 text-sm">
+          Dokumentasi kegiatan organisasi dan kolaborasi dalam menyelesaikan sebuah proyek.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+       
           </div>
         </div>
       </div>
@@ -305,7 +436,7 @@
             <div>
               <h4 class="font-semibold text-gray-800">Email</h4>
               <p class="text-gray-600">aril2008y@gmail.com</p>
-              <p class="text-sm text-gray-400">Balas dalam 24 jam</p>
+              <p class="text-sm text-gray-400"></p>
             </div>
           </div>
           <div class="flex items-start gap-5 bg-white p-5 rounded-xl shadow-sm border border-gray-100">
@@ -315,7 +446,7 @@
             <div>
               <h4 class="font-semibold text-gray-800">WhatsApp</h4>
               <p class="text-gray-600">+62 831 3197 7309</p>
-              <p class="text-sm text-gray-400">balas dalam 24 jam</p>
+              <p class="text-sm text-gray-400"></p>
             </div>
           </div>
           <div class="flex items-start gap-5 bg-white p-5 rounded-xl shadow-sm border border-gray-100">
@@ -325,7 +456,7 @@
             <div>
               <h4 class="font-semibold text-gray-800">Lokasi</h4>
               <p class="text-gray-600">indramayu / jawa barat, Indonesia</p>
-              <p class="text-sm text-gray-400">Remote & on-site kolaborasi</p>
+              <p class="text-sm text-gray-400"></p>
             </div>
           </div>
         </div>
@@ -353,7 +484,7 @@
   <!-- FOOTER sederhana & clean -->
   <footer class="border-t border-gray-200 bg-white mt-12 py-8">
     <div class="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-      <p>© aril — build witch <i class="fas fa-heart text-red-400"></i> & Tailwind CSS</p>
+      <p>portofolio aril </p>
       <div class="flex gap-5 mt-3 md:mt-0">
         <a href="#" class="hover:text-blue-600 transition">Privacy</a>
         <a href="#" class="hover:text-blue-600 transition">Terms</a>
@@ -390,7 +521,7 @@ if(name === '' || message === '') {
     const pesanWA = `Halo, saya ${name}%0A%0APesan: ${message}`;
     
     // Buat link WhatsApp
-    const waLink = `https://wa.me/${6283131977309}?text=${pesanWA}`;
+    const waLink = `https://wa.me/${nomorWhatsapp}?text=${pesanWA}`;
     
     // Buka WhatsApp di tab baru
     window.open(waLink, '_blank');
@@ -409,6 +540,38 @@ if(name === '' || message === '') {
     }, 1000);
   });
 }
+// ================= Portfolio Tabs =================
+
+const tabs = document.querySelectorAll(".portfolio-tab");
+const contents = document.querySelectorAll(".portfolio-content");
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(btn => {
+            btn.classList.remove("active");
+            btn.classList.remove("bg-blue-600");
+            btn.classList.remove("text-white");
+            btn.classList.add("bg-gray-100");
+        });
+
+        contents.forEach(content => {
+            content.classList.add("hidden");
+        });
+
+        tab.classList.add("active");
+        tab.classList.remove("bg-gray-100");
+        tab.classList.add("bg-blue-600");
+        tab.classList.add("text-white");
+
+        document
+            .getElementById(tab.dataset.target)
+            .classList.remove("hidden");
+
+    });
+
+});
   </script>
 </body>
 </html>
