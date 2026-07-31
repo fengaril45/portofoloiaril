@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Investasi + Setoran Bulanan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f0f6fa 0%, #dce8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 40px 36px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0, 20, 30, 0.12), 0 8px 24px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b2b3b;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subhead {
+            font-size: 14px;
+            color: #4e6b7a;
+            font-weight: 400;
+            border-left: 4px solid #2f8f9f;
+            padding-left: 14px;
+            margin-bottom: 28px;
+            background: rgba(47, 143, 159, 0.04);
+            border-radius: 0 12px 12px 0;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a3b4a;
+            margin-bottom: 6px;
+            letter-spacing: 0.01em;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 60px;
+            padding: 0 20px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.2s;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #2f8f9f;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 0 4px rgba(47, 143, 159, 0.12);
+        }
+
+        .input-wrapper span {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1e4a5c;
+            margin-right: 10px;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            background: transparent;
+            font-size: 17px;
+            font-weight: 450;
+            color: #0b2b3b;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #a0b9c7;
+            font-weight: 350;
+            font-size: 15px;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #6d8b9b;
+            margin-top: 6px;
+            padding-left: 6px;
+            font-weight: 400;
+        }
+
+        .toggle-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 6px 0 4px 0;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 450;
+            color: #1a3b4a;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #cbdde7;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch.active {
+            background: #1a4d5e;
+        }
+
+        .toggle-switch .slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-switch.active .slider {
+            transform: translateX(20px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 12px;
+            border: none;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 500;
+            background: #eef3f7;
+            color: #1a3b4a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .btn-primary {
+            background: #1a4d5e;
+            color: white;
+            box-shadow: 0 8px 18px rgba(26, 77, 94, 0.20);
+        }
+
+        .btn-primary:hover {
+            background: #0f3e4e;
+            transform: scale(0.98);
+            box-shadow: 0 6px 14px rgba(26, 77, 94, 0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(0.98);
+        }
+
+        .result-box {
+            margin-top: 32px;
+            padding: 24px 22px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.8);
+            transition: opacity 0.3s ease;
+        }
+
+        .result-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #4a6d7e;
+            font-weight: 500;
+        }
+
+        .result-value {
+            font-size: 34px;
+            font-weight: 600;
+            color: #0b2b3b;
+            margin-top: 4px;
+            letter-spacing: -0.02em;
+            word-break: break-word;
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding-top: 16px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-item .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #4a6d7e;
+            font-weight: 500;
+        }
+
+        .detail-item .value {
+            font-size: 17px;
+            font-weight: 500;
+            color: #0b2b3b;
+            margin-top: 2px;
+        }
+
+        .detail-item .value.positive {
+            color: #1a7a5e;
+        }
+
+        .detail-item .value.negative {
+            color: #b14a4a;
+        }
+
+        .empty-state {
+            color: #6a8b9c;
+            font-weight: 400;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px 18px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .result-value {
+                font-size: 28px;
+            }
+            .btn {
+                font-size: 15px;
+                padding: 14px 10px;
+            }
+            .result-details {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>📊 Kalkulator Investasi</h1>
+        <div class="subhead">FV = PV × (1 + r)^n + PMT × [((1 + r)^n - 1) / r]</div>
+
+        <!-- Modal Awal -->
+        <div class="form-group">
+            <label for="pv">Modal Awal (PV)</label>
+            <div class="input-wrapper">
+                <span>Rp</span>
+                <input type="number" id="pv" placeholder="Contoh: 10.000.000" step="any" />
+            </div>
+        </div>
+
+        <!-- Setoran Bulanan -->
+        <div class="form-group">
+            <label for="monthly">Setoran Bulanan (PMT)</label>
+            <div class="input-wrapper">
+                <span>Rp</span>
+                <input type="number" id="monthly" placeholder="Contoh: 1.000.000" step="any" />
+            </div>
+            <div class="hint">Setoran rutin setiap bulan</div>
+        </div>
+
+        <!-- Tingkat Pengembalian -->
+        <div class="form-group">
+            <label for="rate">Tingkat Pengembalian Tahunan (r)</label>
+            <div class="input-wrapper">
+                <span>%</span>
+                <input type="number" id="rate" placeholder="Contoh: 8.5" step="any" />
+            </div>
+            <div class="hint">Dalam persen per tahun</div>
+        </div>
+
+        <!-- Periode -->
+        <div class="form-group">
+            <label for="period">Jumlah Periode (n)</label>
+            <div class="input-wrapper">
+                <span>tahun</span>
+                <input type="number" id="period" placeholder="Contoh: 10" step="1" min="0" />
+            </div>
+        </div>
+
+        <!-- Toggle: setoran di awal atau akhir periode -->
+        <div class="form-group" style="margin-bottom: 8px;">
+            <div class="toggle-wrapper">
+                <span class="toggle-label">Setoran di awal bulan</span>
+                <div class="toggle-switch" id="toggleSwitch">
+                    <div class="slider"></div>
+                </div>
+                <span class="toggle-label" style="font-weight: 300; color: #4e6b7a; font-size: 13px;" id="toggleStatus">Akhir</span>
+            </div>
+            <div class="hint">Aktifkan jika setoran dilakukan di awal periode</div>
+        </div>
+
+        <!-- Tombol -->
+        <div class="button-group">
+            <button class="btn btn-primary" id="calculateBtn">Hitung FV</button>
+            <button class="btn btn-secondary" id="clearBtn">Reset</button>
+        </div>
+
+        <!-- Hasil -->
+        <div class="result-box" id="resultBox">
+            <div class="result-label">Nilai Masa Depan (FV)</div>
+            <div class="result-value" id="fvDisplay">—</div>
+            <div class="result-details">
+                <div class="detail-item">
+                    <span class="label">Total Modal</span>
+                    <span class="value" id="totalModalDisplay">—</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Total Pertumbuhan</span>
+                    <span class="value" id="growthDisplay">—</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Total Setoran</span>
+                    <span class="value" id="totalDepositDisplay">—</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Bunga / Keuntungan</span>
+                    <span class="value" id="profitDisplay">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // DOM
+            const pvInput = document.getElementById('pv');
+            const monthlyInput = document.getElementById('monthly');
+            const rateInput = document.getElementById('rate');
+            const periodInput = document.getElementById('period');
+            const toggleSwitch = document.getElementById('toggleSwitch');
+            const toggleStatus = document.getElementById('toggleStatus');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            const fvDisplay = document.getElementById('fvDisplay');
+            const totalModalDisplay = document.getElementById('totalModalDisplay');
+            const growthDisplay = document.getElementById('growthDisplay');
+            const totalDepositDisplay = document.getElementById('totalDepositDisplay');
+            const profitDisplay = document.getElementById('profitDisplay');
+
+            // State toggle: true = awal, false = akhir
+            let isBeginning = false;
+
+            // Format Rupiah
+            function formatRupiah(angka) {
+                if (angka === undefined || angka === null || isNaN(angka)) return '—';
+                const rounded = Math.round(angka);
+                return 'Rp ' + rounded.toLocaleString('id-ID');
+            }
+
+            // Format persentase
+            function formatPercent(value) {
+                if (value === undefined || value === null || isNaN(value)) return '—';
+                return value.toFixed(1) + '%';
+            }
+
+            // Toggle klik
+            toggleSwitch.addEventListener('click', function() {
+                isBeginning = !isBeginning;
+                this.classList.toggle('active', isBeginning);
+                toggleStatus.textContent = isBeginning ? 'Awal' : 'Akhir';
+            });
+
+            // Fungsi utama hitung FV dengan setoran bulanan
+            function calculateFV() {
+                // Ambil nilai
+                const pv = parseFloat(pvInput.value.replace(/,/g, '').trim());
+                const monthly = parseFloat(monthlyInput.value.replace(/,/g, '').trim());
+                const ratePercent = parseFloat(rateInput.value.replace(/,/g, '').trim());
+                const period = parseInt(periodInput.value.trim(), 10);
+
+                // Validasi
+                if (isNaN(pv) || pv < 0) {
+                    fvDisplay.textContent = '⚠️ PV tidak valid';
+                    resetDetails();
+                    return;
+                }
+                if (isNaN(monthly) || monthly < 0) {
+                    fvDisplay.textContent = '⚠️ Setoran harus ≥ 0';
+                    resetDetails();
+                    return;
+                }
+                if (isNaN(ratePercent) || ratePercent < 0) {
+                    fvDisplay.textContent = '⚠️ Rate harus ≥ 0';
+                    resetDetails();
+                    return;
+                }
+                if (isNaN(period) || period < 0 || !Number.isInteger(period)) {
+                    fvDisplay.textContent = '⚠️ Periode harus ≥ 0';
+                    resetDetails();
+                    return;
+                }
+
+                // Konversi rate tahunan ke bulanan
+                const rMonthly = ratePercent / 100 / 12;
+                const nMonths = period * 12;
+
+                // FV dari modal awal: PV × (1 + r)^n
+                const fvPV = pv * Math.pow((1 + rMonthly), nMonths);
+
+                // FV dari setoran bulanan (anuitas)
+                let fvPMT = 0;
+                if (monthly > 0 && rMonthly > 0) {
+                    // Rumus: PMT × [((1 + r)^n - 1) / r]
+                    fvPMT = monthly * ((Math.pow((1 + rMonthly), nMonths) - 1) / rMonthly);
+                    
+                    // Jika setoran di awal, tambahkan faktor (1 + r)
+                    if (isBeginning) {
+                        fvPMT = fvPMT * (1 + rMonthly);
+                    }
+                } else if (monthly > 0 && rMonthly === 0) {
+                    // Jika rate 0, setoran hanya dijumlahkan
+                    fvPMT = monthly * nMonths;
+                    if (isBeginning) {
+                        // untuk rate 0, awal/akhir sama saja karena (1+0)=1
+                        // tetap sama
+                    }
+                }
+
+                // Total FV
+                const totalFV = fvPV + fvPMT;
+
+                // Total setoran (nominal)
+                const totalDeposit = monthly * nMonths;
+
+                // Total modal = PV + total setoran
+                const totalModal = pv + totalDeposit;
+
+                // Keuntungan / bunga
+                const profit = totalFV - totalModal;
+
+                // Pertumbuhan (%)
+                let growthPercent = 0;
+                if (totalModal > 0) {
+                    growthPercent = (profit / totalModal) * 100;
+                }
+
+                // Tampilkan hasil
+                fvDisplay.textContent = formatRupiah(totalFV);
+                totalModalDisplay.textContent = formatRupiah(totalModal);
+                totalDepositDisplay.textContent = formatRupiah(totalDeposit);
+
+                // Growth
+                if (growthPercent >= 0) {
+                    growthDisplay.textContent = `+ ${formatPercent(growthPercent)}`;
+                    growthDisplay.className = 'value positive';
+                } else {
+                    growthDisplay.textContent = `${formatPercent(growthPercent)}`;
+                    growthDisplay.className = 'value negative';
+                }
+
+                // Profit
+                if (profit >= 0) {
+                    profitDisplay.textContent = formatRupiah(profit);
+                    profitDisplay.className = 'value positive';
+                } else {
+                    profitDisplay.textContent = formatRupiah(profit);
+                    profitDisplay.className = 'value negative';
+                }
+            }
+
+            function resetDetails() {
+                totalModalDisplay.textContent = '—';
+                growthDisplay.textContent = '—';
+                totalDepositDisplay.textContent = '—';
+                profitDisplay.textContent = '—';
+            }
+
+            function resetCalculator() {
+                pvInput.value = '';
+                monthlyInput.value = '';
+                rateInput.value = '';
+                periodInput.value = '';
+                fvDisplay.textContent = '—';
+                resetDetails();
+                pvInput.focus();
+            }
+
+            // Event listeners
+            calculateBtn.addEventListener('click', calculateFV);
+            clearBtn.addEventListener('click', resetCalculator);
+
+            // Enter key
+            const inputs = [pvInput, monthlyInput, rateInput, periodInput];
+            inputs.forEach(input => {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        calculateFV();
+                    }
+                });
+            });
+
+            // Bersihkan koma saat blur
+            [pvInput, monthlyInput].forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.value) {
+                        const raw = this.value.replace(/,/g, '');
+                        if (!isNaN(parseFloat(raw))) {
+                            this.value = raw;
+                        }
+                    }
+                });
+            });
+
+            window.addEventListener('load', () => {
+                pvInput.focus();
+            });
+        })();
+    </script>
+</body>
+</html>

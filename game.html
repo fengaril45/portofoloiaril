@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English Quiz Game</title>
+    <style>
+        /* === RESET & GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            max-width: 700px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s;
+        }
+
+        /* === HEADER === */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .title span {
+            color: #fbbf24;
+        }
+
+        .badge {
+            background: rgba(251, 191, 36, 0.2);
+            border: 1px solid #fbbf24;
+            padding: 8px 20px;
+            border-radius: 60px;
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* === PROGRESS === */
+        .progress-section {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .level-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .level-label {
+            color: #a5b4fc;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .level-value {
+            background: #4f46e5;
+            padding: 4px 18px;
+            border-radius: 60px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .score-box {
+            text-align: right;
+        }
+
+        .score-label {
+            color: #a5b4fc;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-value {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .score-value span {
+            color: #fbbf24;
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-bar-wrap {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* === QUESTION CARD === */
+        .question-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .question-number {
+            color: #818cf8;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* === OPTIONS === */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 500px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px 18px;
+            color: #e2e8f0;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #818cf8;
+            transform: translateY(-2px);
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-btn .letter {
+            background: rgba(255, 255, 255, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: #a5b4fc;
+            flex-shrink: 0;
+        }
+
+        .option-btn.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .option-btn.correct .letter {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .option-btn.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .option-btn.wrong .letter {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .option-btn.reveal {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        /* === FEEDBACK === */
+        .feedback {
+            padding: 14px 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 16px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+
+        .feedback.wrong {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        /* === NEXT BUTTON === */
+        .next-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border: none;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: none;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        /* === RESULT / LEVEL COMPLETE === */
+        .result-box {
+            text-align: center;
+            padding: 30px 20px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-box .emoji {
+            font-size: 72px;
+            margin-bottom: 15px;
+        }
+
+        .result-box h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .result-box p {
+            color: #a5b4fc;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .result-box .final-score {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fbbf24;
+        }
+
+        .result-box .final-label {
+            color: #818cf8;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .btn-group button {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e1b4b;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 16px;
+            }
+            .question-text {
+                font-size: 18px;
+            }
+            .title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="app">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="title">📚 <span>Quiz</span>English</div>
+            <div class="badge">⭐ Basic</div>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="progress-section">
+            <div class="level-box">
+                <span class="level-label">Level</span>
+                <span class="level-value" id="levelDisplay">1</span>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Skor</div>
+                <div class="score-value"><span id="scoreDisplay">0</span></div>
+            </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+
+        <!-- ====== QUIZ AREA ====== -->
+        <div id="quizArea">
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Pertanyaan 1 / 5</div>
+                <div class="question-text" id="questionText">Loading...</div>
+            </div>
+
+            <div class="options-grid" id="optionsContainer">
+                <!-- options diisi oleh JS -->
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <button class="next-btn" id="nextBtn">Next →</button>
+        </div>
+
+        <!-- ====== RESULT AREA ====== -->
+        <div class="result-box" id="resultBox">
+            <div class="emoji" id="resultEmoji">🎉</div>
+            <h2 id="resultTitle">Level Selesai!</h2>
+            <p id="resultDesc">Kamu hebat!</p>
+            <div>
+                <div class="final-label">Skor Akhir</div>
+                <div class="final-score" id="finalScore">0</div>
+            </div>
+            <div class="btn-group" style="margin-top:25px;">
+                <button class="btn-primary" id="nextLevelBtn">🚀 Level Selanjutnya</button>
+                <button class="btn-secondary" id="resetBtn">🔄 Ulang Level</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================================================================
+        //  DATA SOAL – 3 LEVEL, masing-masing 5 pertanyaan
+        // ================================================================
+        const LEVELS = [{
+            // LEVEL 1 – VERY BASIC
+            name: 'Pemula',
+            questions: [
+                { q: 'Apa arti dari "cat"?', options: ['Anjing', 'Kucing', 'Burung', 'Ikan'], answer: 1 },
+                { q: '"Book" dalam bahasa Indonesia adalah...', options: ['Buku', 'Pensil', 'Meja', 'Kursi'],
+                answer: 0 },
+                { q: 'What is "apple"?', options: ['Jeruk', 'Apel', 'Mangga', 'Pisang'], answer: 1 },
+                { q: '"House" artinya?', options: ['Rumah', 'Sekolah', 'Taman', 'Kantor'], answer: 0 },
+                { q: 'Apa itu "car"?', options: ['Motor', 'Sepeda', 'Mobil', 'Bus'], answer: 2 }
+            ]
+        }, {
+            // LEVEL 2 – BASIC +
+            name: 'Menengah',
+            questions: [
+                { q: 'Apa arti dari "beautiful"?', options: ['Cantik', 'Pintar', 'Kuat', 'Cepat'], answer: 0 },
+                { q: '"Family" dalam bahasa Indonesia adalah...', options: ['Teman', 'Keluarga', 'Tetangga',
+                        'Saudara'
+                    ], answer: 1 },
+                { q: 'What is "teacher"?', options: ['Dokter', 'Polisi', 'Guru', 'Insinyur'], answer: 2 },
+                { q: '"Garden" artinya?', options: ['Dapur', 'Kebun', 'Garasi', 'Kamar'], answer: 1 },
+                { q: 'Apa itu "happiness"?', options: ['Kesedihan', 'Kebahagiaan', 'Kemarahan', 'Ketakutan'],
+                    answer: 1 }
+            ]
+        }, {
+            // LEVEL 3 – INTERMEDIATE
+            name: 'Mahir',
+            questions: [
+                { q: 'What is the meaning of "responsible"?', options: ['Bertanggung jawab', 'Ceria', 'Malas',
+                        'Pemberani'
+                    ], answer: 0 },
+                { q: '"Environment" dalam bahasa Indonesia adalah...', options: ['Lingkungan', 'Bangunan',
+                        'Kendaraan', 'Peralatan'
+                    ], answer: 0 },
+                { q: 'What is "determination"?', options: ['Keraguan', 'Tekad', 'Kebingungan', 'Kelelahan'],
+                    answer: 1 },
+                { q: '"Opportunity" artinya?', options: ['Kesempatan', 'Masalah', 'Kehilangan', 'Perjalanan'],
+                    answer: 0 },
+                { q: 'Apa itu "grateful"?', options: ['Bersyukur', 'Marah', 'Cemas', 'Bangga'], answer: 0 }
+            ]
+        }];
+
+        // ================================================================
+        //  STATE
+        // ================================================================
+        let currentLevel = 0; // 0-index
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        const quizArea = document.getElementById('quizArea');
+        const resultBox = document.getElementById('resultBox');
+        const levelDisplay = document.getElementById('levelDisplay');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const progressFill = document.getElementById('progressFill');
+        const questionNumber = document.getElementById('questionNumber');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const feedback = document.getElementById('feedback');
+        const nextBtn = document.getElementById('nextBtn');
+        const finalScore = document.getElementById('finalScore');
+        const resultEmoji = document.getElementById('resultEmoji');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultDesc = document.getElementById('resultDesc');
+        const nextLevelBtn = document.getElementById('nextLevelBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // ================================================================
+        //  FUNGSI UTAMA
+        // ================================================================
+
+        function loadQuestion() {
+            const levelData = LEVELS[currentLevel];
+            const qs = levelData.questions;
+            const q = qs[currentQuestion];
+
+            // Update tampilan
+            levelDisplay.textContent = currentLevel + 1;
+            scoreDisplay.textContent = score;
+            questionNumber.textContent = `Pertanyaan ${currentQuestion+1} / ${qs.length}`;
+            questionText.textContent = q.q;
+
+            // Progress bar
+            const progress = ((currentQuestion) / qs.length) * 100;
+            progressFill.style.width = progress + '%';
+
+            // Generate options
+            optionsContainer.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span class="letter">${letters[idx]}</span> ${opt}`;
+                btn.dataset.index = idx;
+                btn.addEventListener('click', () => handleAnswer(idx));
+                optionsContainer.appendChild(btn);
+            });
+
+            // Reset state
+            answered = false;
+            feedback.className = 'feedback';
+            feedback.textContent = '';
+            nextBtn.className = 'next-btn';
+            nextBtn.disabled = true;
+        }
+
+        function handleAnswer(selected) {
+            if (answered) return;
+            answered = true;
+
+            const levelData = LEVELS[currentLevel];
+            const q = levelData.questions[currentQuestion];
+            const correct = q.answer;
+            const isCorrect = (selected === correct);
+
+            // Highlight semua opsi
+            const btns = optionsContainer.querySelectorAll('.option-btn');
+            btns.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === correct) btn.classList.add('correct');
+                if (idx === selected && !isCorrect) btn.classList.add('wrong');
+                if (idx === selected && isCorrect) btn.classList.add('correct');
+            });
+
+            // Feedback
+            feedback.className = 'feedback show';
+            if (isCorrect) {
+                feedback.classList.add('correct');
+                feedback.textContent = '✅ Benar! +10 poin';
+                score += 10;
+                scoreDisplay.textContent = score;
+            } else {
+                feedback.classList.add('wrong');
+                feedback.textContent = `❌ Kurang tepat. Jawaban yang benar: "${q.options[correct]}"`;
+            }
+
+            // Tampilkan tombol Next
+            nextBtn.className = 'next-btn show';
+            nextBtn.disabled = false;
+        }
+
+        function goToNextQuestion() {
+            const levelData = LEVELS[currentLevel];
+            const qs = levelData.questions;
+
+            if (currentQuestion + 1 < qs.length) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                // Level selesai
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizArea.style.display = 'none';
+            resultBox.className = 'result-box show';
+
+            const total = LEVELS[currentLevel].questions.length * 10;
+            const pct = Math.round((score / total) * 100);
+
+            finalScore.textContent = score;
+
+            if (pct >= 80) {
+                resultEmoji.textContent = '🏆';
+                resultTitle.textContent = 'Luar Biasa!';
+                resultDesc.textContent = `Kamu menguasai Level ${currentLevel+1} dengan sempurna!`;
+            } else if (pct >= 50) {
+                resultEmoji.textContent = '🌟';
+                resultTitle.textContent = 'Bagus!';
+                resultDesc.textContent = `Terus belajar, kamu pasti semakin mahir!`;
+            } else {
+                resultEmoji.textContent = '💪';
+                resultTitle.textContent = 'Jangan Menyerah!';
+                resultDesc.textContent = `Coba ulangi level ini untuk lebih paham.`;
+            }
+
+            // Progress bar penuh
+            progressFill.style.width = '100%';
+
+            // Tombol next level / selesai
+            if (currentLevel + 1 < LEVELS.length) {
+                nextLevelBtn.textContent = '🚀 Level Selanjutnya';
+                nextLevelBtn.style.display = 'inline-block';
+            } else {
+                nextLevelBtn.textContent = '🎯 Semua Level Selesai!';
+                nextLevelBtn.style.display = 'inline-block';
+            }
+        }
+
+        function startLevel(levelIndex) {
+            currentLevel = levelIndex;
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+
+            quizArea.style.display = 'block';
+            resultBox.className = 'result-box';
+
+            loadQuestion();
+        }
+
+        function resetLevel() {
+            startLevel(currentLevel);
+        }
+
+        function nextLevel() {
+            if (currentLevel + 1 < LEVELS.length) {
+                startLevel(currentLevel + 1);
+            } else {
+                // Sudah di level terakhir – reset ke awal
+                startLevel(0);
+            }
+        }
+
+        // ================================================================
+        //  EVENT LISTENERS
+        // ================================================================
+        nextBtn.addEventListener('click', goToNextQuestion);
+        resetBtn.addEventListener('click', resetLevel);
+        nextLevelBtn.addEventListener('click', nextLevel);
+
+        // ================================================================
+        //  START
+        // ================================================================
+        startLevel(0);
+    </script>
+
+</body>
+</html>
