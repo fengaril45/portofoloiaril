@@ -1,0 +1,1275 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARIL | Curriculum Vitae</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #eef2f7;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .background-circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 350px;
+            height: 350px;
+            background: #b9d7ff;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background: #d7c7ff;
+            right: -100px;
+            bottom: -100px;
+        }
+
+
+        /* =========================
+           CV CONTAINER
+        ========================= */
+
+        .cv-container {
+            width: min(1180px, 92%);
+            margin: 50px auto;
+
+            display: grid;
+            grid-template-columns: 310px 1fr;
+
+            background: rgba(255, 255, 255, 0.9);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(31, 41, 55, 0.12);
+
+            backdrop-filter: blur(20px);
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            background: #111827;
+            color: white;
+            padding: 45px 32px;
+        }
+
+
+        /* PROFILE */
+
+        .profile {
+            text-align: center;
+
+            padding-bottom: 35px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #60a5fa,
+                #8b5cf6
+            );
+
+            font-size: 38px;
+
+            box-shadow:
+                0 10px 35px rgba(96, 165, 250, 0.25);
+        }
+
+
+        .profile h1 {
+            font-size: 30px;
+
+            letter-spacing: 4px;
+
+            font-weight: 800;
+        }
+
+
+        .profession {
+            margin-top: 4px;
+
+            color: #93c5fd;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .location {
+            margin-top: 12px;
+
+            font-size: 12px;
+
+            color: #9ca3af;
+        }
+
+
+        .location i {
+            margin-right: 5px;
+        }
+
+
+        /* =========================
+           SIDEBAR SECTION
+        ========================= */
+
+        .sidebar-section {
+            margin-top: 32px;
+        }
+
+
+        .sidebar-section h2 {
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #93c5fd;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* CONTACT */
+
+        .contact-item {
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            font-size: 12px;
+
+            color: #d1d5db;
+
+            word-break: break-word;
+        }
+
+
+        .contact-item i {
+            width: 17px;
+
+            color: #60a5fa;
+
+            margin-top: 4px;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .skill {
+            padding: 8px 11px;
+
+            background: #1f2937;
+
+            border: 1px solid #374151;
+
+            border-radius: 9px;
+
+            color: #dbeafe;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+
+        .skill:hover {
+            background: #2563eb;
+
+            border-color: #2563eb;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        .language {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+            font-size: 12px;
+        }
+
+
+        .language span {
+            color: #d1d5db;
+        }
+
+
+        .language strong {
+            color: #93c5fd;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 60px 55px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding-bottom: 50px;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        .small-title {
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            font-weight: 700;
+
+            color: #6b7280;
+        }
+
+
+        .hero h2 {
+            margin-top: 12px;
+
+            font-size: clamp(38px, 5vw, 58px);
+
+            line-height: 1.1;
+
+            letter-spacing: -2px;
+        }
+
+
+        .hero h2 span {
+            background: linear-gradient(
+                90deg,
+                #2563eb,
+                #7c3aed
+            );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero p {
+            max-width: 650px;
+
+            margin-top: 20px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CONTENT SECTION
+        ========================= */
+
+        .content-section {
+            padding: 48px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+
+        .section-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-title span {
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #2563eb;
+
+            padding: 6px 9px;
+
+            background: #eff6ff;
+
+            border-radius: 8px;
+        }
+
+
+        .section-title h2 {
+            font-size: 22px;
+        }
+
+
+        .description {
+            max-width: 800px;
+
+            margin-bottom: 14px;
+
+            font-size: 13px;
+
+            color: #6b7280;
+        }
+
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            position: relative;
+
+            padding-left: 24px;
+        }
+
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 4px;
+
+            top: 6px;
+
+            bottom: 6px;
+
+            width: 1px;
+
+            background: #dbeafe;
+        }
+
+
+        .timeline-item {
+            position: relative;
+        }
+
+
+        .timeline-dot {
+            position: absolute;
+
+            left: -24px;
+
+            top: 6px;
+
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            box-shadow:
+                0 0 0 5px #eff6ff;
+        }
+
+
+        .date {
+            display: inline-block;
+
+            margin-bottom: 5px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #2563eb;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+        }
+
+
+        .timeline-content h3,
+        .experience-card h3 {
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .timeline-content p,
+        .experience-card p {
+            font-size: 13px;
+
+            color: #6b7280;
+        }
+
+
+        /* =========================
+           PENGALAMAN
+        ========================= */
+
+        .experience-card {
+            display: grid;
+
+            grid-template-columns: 45px 1fr;
+
+            gap: 18px;
+
+            padding: 20px;
+
+            margin-bottom: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #edf0f4;
+
+            border-radius: 16px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .experience-card:hover {
+            transform: translateY(-3px);
+
+            background: white;
+
+            box-shadow:
+                0 15px 35px rgba(15, 23, 42, 0.07);
+        }
+
+
+        .experience-icon {
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           BUTTON AREA
+        ========================= */
+
+        .button-area {
+            padding-top: 45px;
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition: 0.3s ease;
+        }
+
+
+        /* CONTACT BUTTON */
+
+        .btn.primary {
+            color: white;
+
+            background: #111827;
+
+            box-shadow:
+                0 8px 20px rgba(17, 24, 39, 0.15);
+        }
+
+
+        .btn.primary:hover {
+            transform: translateY(-3px);
+
+            background: #2563eb;
+        }
+
+
+        /* DOWNLOAD BUTTON */
+
+        .btn.secondary {
+            color: #374151;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+        }
+
+
+        .btn.secondary:hover {
+            transform: translateY(-3px);
+
+            border-color: #93c5fd;
+
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding-top: 30px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            color: #9ca3af;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .cv-container {
+                grid-template-columns: 1fr;
+
+                margin: 20px auto;
+            }
+
+
+            .sidebar {
+                padding: 35px 25px;
+            }
+
+
+            .content {
+                padding: 40px 30px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            body {
+                background: #f8fafc;
+            }
+
+
+            .cv-container {
+                width: 100%;
+
+                margin: 0;
+
+                border-radius: 0;
+
+                box-shadow: none;
+            }
+
+
+            .sidebar {
+                padding: 35px 22px;
+            }
+
+
+            .content {
+                padding: 35px 22px;
+            }
+
+
+            .hero h2 {
+                font-size: 40px;
+            }
+
+
+            .experience-card {
+                grid-template-columns: 1fr;
+            }
+
+
+            .button-area {
+                flex-direction: column;
+            }
+
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+
+        /* =========================
+           PRINT / DOWNLOAD
+        ========================= */
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+
+            .cv-container {
+                width: 100%;
+
+                margin: 0;
+
+                border: none;
+
+                box-shadow: none;
+            }
+
+
+            .background-circle {
+                display: none;
+            }
+
+
+            .button-area {
+                display: none;
+            }
+
+
+            .content {
+                padding: 30px;
+            }
+
+
+            .sidebar {
+                print-color-adjust: exact;
+
+                -webkit-print-color-adjust: exact;
+            }
+            
+
+        }
+      .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="background-circle circle-1"></div>
+
+    <div class="background-circle circle-2"></div>
+
+
+
+    <main class="cv-container">
+
+
+        <!-- ==================================
+             SIDEBAR
+        ================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- PROFILE -->
+
+            <div class="profile">
+
+                <div class="profile-photo">
+    <img src="fiaril.jpeg" alt="Foto ARIL">
+</div>
+
+
+                <h1>ARIL</h1>
+
+
+                <p class="profession">
+                   siswa smkn 1 losarang
+                </p>
+
+
+                <p class="location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Jawa Barat, Indonesia
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <section class="sidebar-section">
+
+                <h2>CONTACT</h2>
+
+
+                <div class="contact-item">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>
+                        aril2008y@gmail.com
+                    </span>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <span>
+                        +62 831 319 7309
+                    </span>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fa-brands fa-github"></i>
+
+                    <span>
+                        https://github.com/fengaril45
+                    </span>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <i class="fa-brands fa-linkedin"></i>
+
+                    <span>
+                        linkedin.com/in/aril
+                    </span>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- SKILLS -->
+
+            <section class="sidebar-section">
+
+                <h2>SKILLS</h2>
+
+
+                <div class="skills">
+
+                    <span class="skill">
+                        POWER POINT
+                    </span>
+
+                    <span class="skill">
+                        EXCEL
+                    </span>
+
+                    <span class="skill">
+                       WORD
+                    </span>
+
+                    <span class="skill">
+                        ROUTING
+                    </span>
+
+                    <span class="skill">
+                       INSTAL LINUX
+                    </span>
+
+                    <span class="skill">
+                        INSTAL WINDOWS
+                    </span>
+
+                    <span class="skill">
+                        MikroTik
+                    </span>
+
+                    
+
+                </div>
+
+            </section>
+
+
+
+            <!-- LANGUAGE -->
+
+            <section class="sidebar-section">
+
+                <h2>LANGUAGES</h2>
+
+
+                <div class="language">
+
+                    <span>
+                        Bahasa Indonesia
+                    </span>
+
+                    <strong>
+                        Native
+                    </strong>
+
+                </div>
+
+
+                <div class="language">
+
+                    <span>
+                        English
+                    </span>
+
+                    <strong>
+                        Basic
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+        </aside>
+
+
+
+        <!-- ==================================
+             MAIN CONTENT
+        ================================== -->
+
+        <section class="content">
+
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <span class="small-title">
+                    CURRICULUM VITAE
+                </span>
+
+
+                <h2>
+                    Hello, I'm <span>Aril.</span>
+                </h2>
+
+
+                <p>
+                    saya adalah siswa smkn 1 losarang yang mengambil jurusan teknik komputer jaringan komputer
+                    karena ketertarikan saya pada instalasi jaringan komputer
+                </p>
+
+            </section>
+
+
+
+            <!-- ==================================
+                 TENTANG SAYA
+            ================================== -->
+
+            <section class="content-section">
+
+
+                <div class="section-title">
+
+                    <span>
+                        01
+                    </span>
+
+                    <h2>
+                        Tentang Saya
+                    </h2>
+
+                </div>
+
+
+                <p class="description">
+
+                    Saya adalah siswa SMK Teknik Komputer dan Jaringan
+                    yang memiliki ketertarikan dalam bidang teknologi,
+                    khususnya pengembangan website dan jaringan komputer.
+
+                </p>
+
+
+                <p class="description">
+
+                    Saya senang mempelajari teknologi baru dan terus
+                    meningkatkan kemampuan melalui berbagai project,
+                    latihan, serta pembelajaran mandiri.
+
+                </p>
+
+
+                <p class="description">
+
+                    Selain teknologi, saya juga memiliki ketertarikan
+                    terhadap dunia finance dan investasi.
+
+                </p>
+
+            </section>
+
+
+
+            <!-- ==================================
+                 PENDIDIKAN
+            ================================== -->
+
+            <section class="content-section">
+
+
+                <div class="section-title">
+
+                    <span>
+                        02
+                    </span>
+
+                    <h2>
+                        Pendidikan
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+
+                        <div class="timeline-dot"></div>
+
+
+                        <div class="timeline-content">
+
+
+                            <span class="date">
+                                2024 — 2027
+                            </span>
+
+
+                            <h3>
+                                SMKN 1 LOSARANG— Teknik Komputer dan Jaringan
+                            </h3>
+
+
+                            <p>
+
+                                Mempelajari jaringan komputer,
+                                sistem operasi, troubleshooting,dan 
+                                konfigurasi jaringan
+                               
+
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==================================
+                 PENGALAMAN
+            ================================== -->
+
+            <section class="content-section">
+
+
+                <div class="section-title">
+
+                    <span>
+                        03
+                    </span>
+
+                    <h2>
+                        Pengalaman
+                    </h2>
+
+                </div>
+
+
+
+                <!-- PENGALAMAN 1 -->
+
+                <div class="experience-card">
+
+
+                    <div class="experience-icon">
+
+                        <i class="fa-solid fa-code"></i>
+
+                    </div>
+
+
+                    <div>
+
+
+                        <span class="date">
+                            projek kelas 12
+                        </span>
+
+
+                        <h3>
+                            bikin curriculum vitae
+                        </h3>
+
+
+                        <p>
+
+                            Membuat beberapa project website menggunakan
+                            HTML, CSS, JavaScript dan framework modern.
+                            Fokus pada desain responsive dan user interface
+                            yang sederhana.
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PENGALAMAN 2 -->
+
+                <div class="experience-card">
+
+
+                    <div class="experience-icon">
+
+                        <i class="fa-solid fa-network-wired"></i>
+
+                    </div>
+
+
+                    <div>
+
+
+                        <span class="date">
+                            project kelas 12
+                        </span>
+
+
+                        <h3>
+                           membuat portofolio
+                        </h3>
+
+
+                        <p>
+
+                            membuat website portofolio menggunakan HTML,CSS DAN JAVASCRIPT dengan tampilan elegan 
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==================================
+                 BUTTON
+            ================================== -->
+
+            <div class="button-area">
+
+
+                <a href="aril2008y@gmail.com"
+                   class="btn primary">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    Contact Me
+
+                </a>
+
+
+
+                <button
+                    onclick=""
+                    class="btn secondary">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    Unduh CV
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <footer>
+
+                © 2026 ARIL. All Rights Reserved.
+
+            </footer>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
+
